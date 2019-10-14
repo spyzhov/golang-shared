@@ -6,9 +6,9 @@ build-lib:
 build-swig:
 	cd wrapper && swig -php7 example.i && \
 	gcc `php-config --includes` \
-	 	-L. -limgutil \
 	 	-fpic -c example_wrap.c example.c && \
-	gcc -v -L. -limgutil \
+	gcc -v \
+		-L. -limgutil \
 		-shared example_wrap.o example.o \
 		-o example.so
 

@@ -14,3 +14,6 @@
 
 # GoLand IDE=
 .idea
+
+# Builded files
+libimgutil.h

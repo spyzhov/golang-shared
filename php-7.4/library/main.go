@@ -8,15 +8,8 @@ import (
 	"os"
 )
 
-const version = "v0.0.1"
-
-//export Version
-func Version() *C.char {
-	return C.CString(version)
-}
-
 //export ImgutilGetImageSize
-func ImgutilGetImageSize(path *C.char, w *uint, h *uint) *C.char {
+func ImgutilGetImageSize(path *C.char, w *int, h *int) *C.char {
 	file, err := os.Open(C.GoString(path))
 	if err != nil {
 		return C.CString(err.Error())
@@ -29,8 +22,8 @@ func ImgutilGetImageSize(path *C.char, w *uint, h *uint) *C.char {
 	}
 
 	rect := img.Bounds()
-	*w = uint(rect.Dx())
-	*h = uint(rect.Dy())
+	*w = int(rect.Dx())
+	*h = int(rect.Dy())
 
 	return nil
 }

@@ -15,7 +15,6 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
-	sed -i 's/;opcache.preload=/opcache.preload=\/root\/extension\/preload.php/' /usr/local/etc/php/php.ini && \
 	sed -i 's/;ffi.enable=preload/ffi.enable=preload/' /usr/local/etc/php/php.ini
 
 COPY extension ./extension

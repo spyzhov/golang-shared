@@ -9,7 +9,7 @@ import (
 )
 
 //export ImgutilGetImageSize
-func ImgutilGetImageSize(path *C.char, w *int, h *int) *C.char {
+func ImgutilGetImageSize(path *C.char, w *uint, h *uint) *C.char {
 	file, err := os.Open(C.GoString(path))
 	if err != nil {
 		return C.CString(err.Error())
@@ -22,8 +22,8 @@ func ImgutilGetImageSize(path *C.char, w *int, h *int) *C.char {
 	}
 
 	rect := img.Bounds()
-	*w = int(rect.Dx())
-	*h = int(rect.Dy())
+	*w = uint(rect.Dx())
+	*h = uint(rect.Dy())
 
 	return nil
 }

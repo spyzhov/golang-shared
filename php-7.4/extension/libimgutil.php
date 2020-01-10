@@ -21,7 +21,7 @@ extern char* ImgutilGetImageSize(char* p0, GoUint* p1, GoUint* p2);
         $err = self::$ffi->ImgutilGetImageSize($path, \FFI::addr($w), \FFI::addr($h));
         if ($err) {
             printf("ERROR: %s", (string)$err);
-            return 100;
+            return 1;
         }
 
         printf("%s: %lux%lu\n", $path, $w->cdata, $h->cdata);

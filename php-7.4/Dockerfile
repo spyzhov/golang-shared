@@ -17,7 +17,7 @@ RUN apt-get update && \
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 	sed -i 's/;ffi.enable=preload/ffi.enable=preload/' /usr/local/etc/php/php.ini
 
-COPY extension ./extension
+COPY php-7.4/extension ./extension
 COPY --from=go-builder /go/libimgutil.so ./extension/
-COPY test.php icon_128.png ./
+COPY php-7.4/test.php php-7.4/icon_128.png ./
 RUN php test.php

@@ -12,7 +12,7 @@ RUN apt-get update && \
 		swig3.0
 
 COPY --from=go-builder /go/libimgutil.so /go/libimgutil.h ./
-COPY ./extension/* ./
+COPY ./php-7.3/extension/* ./
 
 RUN swig -php7 example.i && \
 	gcc `php-config --includes` \
@@ -30,5 +30,5 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 RUN echo "extension=example" > /usr/local/etc/php/conf.d/example.ini
 
 COPY --from=php-builder /root/libimgutil.so /root/example.so $LD_LIBRARY_PATH/
-COPY test.php icon_128.png ./
+COPY php-7.3/test.php php-7.3/icon_128.png ./
 RUN php test.php

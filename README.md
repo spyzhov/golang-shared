@@ -1,8 +1,8 @@
-# Proof-of-concept
+# POC: use Golang as shared library
 
 Using Golang shared libraries in other languages. 
 
-Results for [library](library/main.go):
+Results for [library](library/Dockerfile):
  * [php-7.3/Dockerfile](php-7.3/Dockerfile);
  * [php-7.4/Dockerfile](php-7.4/Dockerfile);
  * [python/Dockerfile](python/Dockerfile);

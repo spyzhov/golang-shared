@@ -1,8 +1,3 @@
-FROM golang:1.13 as go-builder
-WORKDIR /go
-ADD library/main.go main.go
-RUN go build -o /go/libimgutil.so -buildmode=c-shared main.go
-
 # https://www.php.net/manual/ffi.examples-complete.php
 FROM php:7.4.1-cli
 WORKDIR /root
@@ -17,7 +12,7 @@ RUN apt-get update && \
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 	sed -i 's/;ffi.enable=preload/ffi.enable=preload/' /usr/local/etc/php/php.ini
 
+# From: library/Dockerfile
+COPY --from=golang-poc-builder /go/libgolangutil.so ./extension/
 COPY php-7.4/extension ./extension
-COPY --from=go-builder /go/libimgutil.so ./extension/
-COPY php-7.4/test.php php-7.4/icon_128.png ./
-RUN php test.php
+COPY php-7.4/test.php example/example.* ./

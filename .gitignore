@@ -16,4 +16,4 @@
 .idea
 
 # Builded files
-libimgutil.h
+libgolangutil.h

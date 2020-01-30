@@ -3,6 +3,8 @@
  *
  * Copyright (c) 2007 Stefan Goessner (goessner.net)
  * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ *
+ * Source: https://code.google.com/archive/p/jsonpath/
  */
 
 // API function 
@@ -13,10 +15,7 @@ function jsonPath($obj, $expr, $args=null) {
    $jsonpath->obj = $obj;
    if ($expr && $obj && ($jsonpath->resultType == "VALUE" || $jsonpath->resultType == "PATH")) {
       $jsonpath->trace(preg_replace("/^\\$;/", "", $x), $obj, "$");
-      if (count($jsonpath->result))
-         return $jsonpath->result;
-      else
-         return false;
+      return $jsonpath->result;
    }
 }
 

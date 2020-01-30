@@ -1,4 +1,4 @@
-.PHONY: php-7.3-build php-7.3-test php-7.3 php-7.4-build php-7.4-test php-7.4 python-build python-test python java-build java-test java
+.PHONY: php-7.3-build php-7.3-test php-7.3-bench php-7.3 php-7.4-build php-7.4-test php-7.4-bench php-7.4 python-build python-test python java-build java-test java
 
 SP="=========="
 LN=-13
@@ -20,6 +20,9 @@ php-7.3-build:
 php-7.3-test:
 	@printf ${FMT} ${LN} "php-7.3: test"
 	@docker run -it php-7.3-poc php test.php
+php-7.3-bench:
+	@printf ${FMT} ${LN} "php-7.3: bench"
+	@docker run -it -v `pwd`/bench:/root/bench php-7.3-poc php bench/test.php
 php-7.3: php-7.3-build-full php-7.3-test
 
 php-7.4-build-full: golang-build php-7.4-build
@@ -29,6 +32,9 @@ php-7.4-build:
 php-7.4-test:
 	@printf ${FMT} ${LN} "php-7.4: test"
 	@docker run -it php-7.4-poc php test.php
+php-7.4-bench:
+	@printf ${FMT} ${LN} "php-7.4: bench"
+	@docker run -it -v `pwd`/bench:/root/bench php-7.4-poc php bench/test.php
 php-7.4: php-7.4-build php-7.4-test
 
 python-build-full: golang-build python-build
